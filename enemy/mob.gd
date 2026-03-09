@@ -1,0 +1,12 @@
+extends RigidBody2D
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	queue_free()
+
+
+func destroy() -> void:
+	$CollisionShape2D.set_deferred("disabled", true)
+	$AnimationPlayer.play("Blast")
+	await $AnimationPlayer.animation_finished
+	queue_free()

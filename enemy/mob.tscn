@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://btq5om5iui1an"]
+
+[ext_resource type="Script" uid="uid://cb6skj0tri76e" path="res://enemy/mob.gd" id="1_eljg4"]
+[ext_resource type="Texture2D" uid="uid://bevp4qf7nwuox" path="res://art/Asteroid 01 - Explode.png" id="2_bq0h1"]
+[ext_resource type="Texture2D" uid="uid://c21ptrg18telw" path="res://art/Asteroid 01 - Explode inverted.png" id="3_3vvgw"]
+[ext_resource type="Material" uid="uid://ndqlm67idgj0" path="res://art/fieryglow.tres" id="3_fdr5x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vvgw"]
+radius = 17.029387
+
+[sub_resource type="Animation" id="Animation_3vvgw"]
+resource_name = "Blast"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/InvertedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fdr5x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/InvertedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ctp6e"]
+_data = {
+&"Blast": SubResource("Animation_3vvgw"),
+&"RESET": SubResource("Animation_fdr5x")
+}
+
+[node name="Mob" type="RigidBody2D" unique_id=56500850]
+scale = Vector2(0.5, 0.5)
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_eljg4")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=898193181]
+clip_children = 2
+texture = ExtResource("2_bq0h1")
+hframes = 8
+metadata/_edit_group_ = true
+
+[node name="InvertedSprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1415765284]
+material = ExtResource("3_fdr5x")
+texture = ExtResource("3_3vvgw")
+hframes = 8
+frame = 1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=125142213]
+position = Vector2(-1, 0)
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_3vvgw")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1694095606]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=910401188]
+libraries/ = SubResource("AnimationLibrary_ctp6e")
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
