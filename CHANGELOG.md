@@ -1,4 +1,14 @@
-## [0.8.14] - 2026-03-08
+## [0.8.15] - 2026-03-09
+ 
+### Added
+
+### Changed
+ 
+### Fixed
+- README.md formatting
+- Contribution dates
+
+## [0.8.14] - 2026-03-09
  
 ### Added
 - Contributors in README.md
