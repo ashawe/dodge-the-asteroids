@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://be4ewhgwny5qk"]
+
+[ext_resource type="Script" uid="uid://cdtsphxftgfg3" path="res://hud/heart.gd" id="1_heart"]
+[ext_resource type="Texture2D" uid="uid://cox2piqn825lt" path="res://art/HUD/Heart/heart_spritesheet_32x32.png" id="2_heart"]
+[ext_resource type="Script" uid="uid://blknulmfuybqe" path="res://hit_flash_and_flicker_component.gd" id="3_heart"]
+
+[node name="Heart" type="Sprite2D" unique_id=456511409]
+texture = ExtResource("2_heart")
+hframes = 5
+vframes = 2
+script = ExtResource("1_heart")
+
+[node name="HitFlashAndFlickerComponent" type="Node" parent="." unique_id=460122406]
+script = ExtResource("3_heart")

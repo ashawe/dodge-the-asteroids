@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://igsh28ydu4f5" path="res://art/PlayerShipEngineEffects/Main Ship - Engines - Base Engine - Powering.png" id="3_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://bjrkye3us043q" path="res://art/PlayerShipEngineBase/Main Ship - Engines - Base Engine.png" id="3_qjkh3"]
 [ext_resource type="Script" uid="uid://bp5g80t5iovn5" path="res://player/engine_animation.gd" id="4_g6k8r"]
+[ext_resource type="Script" uid="uid://blknulmfuybqe" path="res://hit_flash_and_flicker_component.gd" id="7_boad6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
 atlas = ExtResource("2_yw30f")
@@ -90,5 +91,9 @@ texture = ExtResource("2_rkbax")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1161656787]
 visible = false
 polygon = PackedVector2Array(0, -19, 3, -16, 6, -10, 8, -5, 21, 8, 21, 15, 8, 8, 3, 9, 3, 18, -3, 18, -3, 9, -7, 8, -21, 15, -21, 8, -8, -5, -6, -10, -3, -16)
+
+[node name="HitFlashAndFlickerComponent" type="Node" parent="." unique_id=1717665880 node_paths=PackedStringArray("target")]
+script = ExtResource("7_boad6")
+target = NodePath("..")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

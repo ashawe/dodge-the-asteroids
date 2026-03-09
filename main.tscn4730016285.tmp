@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c2sklip5qfp7o" path="res://hud/hud.tscn" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://q5fwn1nnbud1" path="res://art/Backgrounds/Starry background  - Layer 01 - Void.png" id="5_272bh"]
 [ext_resource type="Texture2D" uid="uid://d3p7h0y74rrha" path="res://art/Backgrounds/Starry background  - Layer 02 - Stars.png" id="6_5vw27"]
+[ext_resource type="PackedScene" uid="uid://blbdgcdte2ogj" path="res://hud/effects.tscn" id="7_5vw27"]
 [ext_resource type="Texture2D" uid="uid://b41it4nj3c51h" path="res://art/Backgrounds/Starry background  - Layer 03 - Stars.png" id="7_kek77"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
@@ -229,7 +230,7 @@ point_count = 5
 
 [node name="Main" type="Node" unique_id=67030597]
 script = ExtResource("1_0xm2m")
-asteroid_scene = ExtResource("2_1bvp3")
+mob_scene = ExtResource("2_1bvp3")
 
 [node name="Node" type="Node" parent="." unique_id=739555063]
 
@@ -276,6 +277,9 @@ frame_progress = 0.022832008
 [node name="Player" parent="." unique_id=1294606859 instance=ExtResource("2_h2yge")]
 visible = false
 
+[node name="EffectsNode" parent="Player" unique_id=1169592464 node_paths=PackedStringArray("target") instance=ExtResource("7_5vw27")]
+target = NodePath("..")
+
 [node name="MobTimer" type="Timer" parent="." unique_id=265171650]
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=423913390]
@@ -296,8 +300,8 @@ rotation = 0.0020833302
 
 [node name="HUD" parent="." unique_id=1291757214 instance=ExtResource("4_1bvp3")]
 
-[connection signal="player_died" from="Player" to="." method="game_over"]
-[connection signal="player_got_hit" from="Player" to="HUD" method="lose_heart"]
+[connection signal="player_died" from="." to="Player" method="die"]
+[connection signal="hit" from="Player" to="." method="reduce_life"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

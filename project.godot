@@ -62,7 +62,6 @@ ui_down={
 
 [physics]
 
-3d/physics_engine="Jolt Physics"
 
 [rendering]
 

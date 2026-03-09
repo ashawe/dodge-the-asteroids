@@ -1,14 +1,12 @@
 extends AnimatedSprite2D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Connect animation_changed signal programatically
 	animation_changed.connect(_on_animation_changed)
 
 
-
-func _on_animation_changed():
-	# Make boost look big and good
+# Make boost look big and good
+func _on_animation_changed() -> void:
 	if self.animation == "power":
 		self.scale = Vector2(1, 2) # Double the size
 		self.position = Vector2(0.0, 3.0) # since size big, position need to change

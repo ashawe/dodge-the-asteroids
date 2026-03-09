@@ -3,35 +3,74 @@ extends CanvasLayer
 # Notifies `Main` node that the button has been pressed
 signal start_game
 
-# Called when the node enters the scene tree for the first time.
+const HeartScene := preload("res://hud/heart.tscn")
+
+var message_label: Label
+var score_label: Label
+var message_timer: Timer
+var start_button: Button
+var heart_bar: CanvasGroup
+var hearts: Array[Node] = []
+
 func _ready() -> void:
-	pass # Replace with function body.
+	message_label = $MessageLabel
+	message_timer = $MessageTimer
+	start_button = $StartButton
+	score_label = $ScoreLabel
+	heart_bar = $HeartBar
 
 
-func show_message(text):
-	$MessageLabel.text = text
-	$MessageLabel.show()
-	$MessageTimer.start()
+func show_message(text) -> void:
+	message_label.text = text
+	message_label.show()
+	message_timer.start()
 
-func show_game_over():
+
+func show_game_over() -> void:
 	show_message("Game Over")
 	# Wait until the MessageTimer has counted down.
-	await $MessageTimer.timeout
+	await message_timer.timeout
 
-	$MessageLabel.text = "Dodge the Asteroids!"
-	$MessageLabel.show()
+	message_label.text = "Dodge the Asteroids!"
+	message_label.show()
+	
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout
-	$StartButton.show()
+	start_button.show()
 
-func update_score(score):
-	$ScoreLabel.text = str(score)
+
+func update_score(score) -> void:
+	score_label.text = str(score)
+
+
+func setup_hearts(count: int, start_x := 448, spacing := -32) -> void:
+	# Remove old hearts
+	for heart in hearts:
+		heart.queue_free()
+	hearts.clear()
+	# Create new hearts right-to-left
+	for i in count:
+		var heart := HeartScene.instantiate()
+		heart.position = Vector2(start_x + i * spacing, 32)
+		heart_bar.add_child(heart)
+		hearts.append(heart)
+
+
+func lose_heart(index: int) -> void:
+	if index >= 0 and index < hearts.size():
+		hearts[index].lose()
+
+
+func restore_all_hearts() -> void:
+	for heart in hearts:
+		await get_tree().create_timer(0.33).timeout
+		heart.restore()
 
 
 func _on_start_button_pressed() -> void:
-	$StartButton.hide()
+	start_button.hide()
 	start_game.emit()
 
 
 func _on_message_timer_timeout() -> void:
-	$MessageLabel.hide()
+	message_label.hide()

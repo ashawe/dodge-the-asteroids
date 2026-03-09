@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bnnocmrujs2sj" path="res://hud/hud.gd" id="1_2gk58"]
 [ext_resource type="FontFile" uid="uid://djwrv5oc6n8s" path="res://fonts/Xolonium-Regular.ttf" id="2_318vg"]
-[ext_resource type="Texture2D" uid="uid://cox2piqn825lt" path="res://art/HUD/Heart/heart_spritesheet_32x32.png" id="3_318vg"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1291757214]
 script = ExtResource("1_2gk58")
@@ -61,24 +60,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="HeartBar" type="CanvasGroup" parent="." unique_id=749473982]
-
-[node name="Heart3" type="Sprite2D" parent="HeartBar" unique_id=2116132493]
-position = Vector2(384, 32)
-texture = ExtResource("3_318vg")
-hframes = 5
-vframes = 2
-
-[node name="Heart2" type="Sprite2D" parent="HeartBar" unique_id=1532689806]
-position = Vector2(416, 32)
-texture = ExtResource("3_318vg")
-hframes = 5
-vframes = 2
-
-[node name="Heart1" type="Sprite2D" parent="HeartBar" unique_id=2056293196]
-position = Vector2(448, 32)
-texture = ExtResource("3_318vg")
-hframes = 5
-vframes = 2
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
