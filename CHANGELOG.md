@@ -1,3 +1,13 @@
+## [0.8.14] - 2026-03-08
+ 
+### Added
+- Contributors in README.md
+
+### Changed
+ 
+### Fixed
+
+
 ## [0.8.13] - 2026-03-08
  
 ### Added
