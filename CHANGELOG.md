@@ -1,3 +1,12 @@
+## [0.8.16] - 2026-03-09
+ 
+### Added
+- Highscore is now displayed and saved to disk in user folder
+
+### Changed
+ 
+### Fixed
+
 ## [0.8.15] - 2026-03-09
  
 ### Added

@@ -60,9 +60,6 @@ ui_down={
 ]
 }
 
-[physics]
-
-
 [rendering]
 
 rendering_device/driver.windows="d3d12"

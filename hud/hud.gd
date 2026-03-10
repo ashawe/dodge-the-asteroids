@@ -1,12 +1,17 @@
 extends CanvasLayer
 
+class_name HeadsUpDisplay
+
 # Notifies `Main` node that the button has been pressed
 signal start_game
 
-const HeartScene := preload("res://hud/heart.tscn")
+const HEART_SCENE := preload("res://hud/heart.tscn")
+const HIGH_SCORE_TEXT := "High Score: "
+const NEW_HIGH_SCORE_TEXT := "New High Score: "
 
 var message_label: Label
 var score_label: Label
+var high_score_label: Label
 var message_timer: Timer
 var start_button: Button
 var heart_bar: CanvasGroup
@@ -17,6 +22,7 @@ func _ready() -> void:
 	message_timer = $MessageTimer
 	start_button = $StartButton
 	score_label = $ScoreLabel
+	high_score_label = $HighScoreLabel
 	heart_bar = $HeartBar
 
 
@@ -25,6 +31,17 @@ func show_message(text) -> void:
 	message_label.show()
 	message_timer.start()
 
+func show_high_score(score:int, is_new_high_score := false) -> void:
+	if is_new_high_score:
+		high_score_label.text = NEW_HIGH_SCORE_TEXT + str(score)
+		score_label.visible = false
+	else:
+		high_score_label.text = HIGH_SCORE_TEXT + str(score)
+	high_score_label.visible = true
+	
+func hide_high_score() -> void:
+	score_label.visible = true
+	high_score_label.visible = false
 
 func show_game_over() -> void:
 	show_message("Game Over")
@@ -50,7 +67,7 @@ func setup_hearts(count: int, start_x := 448, spacing := -32) -> void:
 	hearts.clear()
 	# Create new hearts right-to-left
 	for i in count:
-		var heart := HeartScene.instantiate()
+		var heart := HEART_SCENE.instantiate()
 		heart.position = Vector2(start_x + i * spacing, 32)
 		heart_bar.add_child(heart)
 		hearts.append(heart)
