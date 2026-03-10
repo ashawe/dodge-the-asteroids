@@ -1,4 +1,4 @@
-## [0.8.16] - 2026-03-09
+## [0.9] - 2026-03-09
  
 ### Added
 - Highscore is now displayed and saved to disk in user folder
