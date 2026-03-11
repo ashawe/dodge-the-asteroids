@@ -2,6 +2,40 @@
 
 [ext_resource type="Script" uid="uid://bnnocmrujs2sj" path="res://hud/hud.gd" id="1_2gk58"]
 [ext_resource type="FontFile" uid="uid://djwrv5oc6n8s" path="res://fonts/Xolonium-Regular.ttf" id="2_318vg"]
+[ext_resource type="StyleBox" uid="uid://dyuaykwsg7x84" path="res://hud/start_style_box_flat.tres" id="3_318vg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_318vg"]
+bg_color = Color(0.84946567, 0.4003956, 0.99999946, 0.4509804)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.83416224, 0.63851184, 1, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8tcp"]
+bg_color = Color(0.8876894, 0.573377, 1, 0.4509804)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.83416224, 0.63851184, 1, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svhta"]
+bg_color = Color(0.8509804, 0.4, 1, 0.4509804)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.83416224, 0.63851184, 1, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
 
 [node name="HUD" type="CanvasLayer" unique_id=1291757214]
 script = ExtResource("1_2gk58")
@@ -35,6 +69,7 @@ theme_override_font_sizes/font_size = 36
 text = "High Score:"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="MessageLabel" type="Label" parent="." unique_id=1645951101]
 anchors_preset = 8
@@ -54,22 +89,7 @@ text = "Dodge the Asteroids!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-
-[node name="StartButton" type="Button" parent="." unique_id=170633707]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -122.0
-offset_top = -156.0
-offset_right = 122.0
-offset_bottom = -56.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_318vg")
-theme_override_font_sizes/font_size = 64
-text = "START"
+metadata/_edit_use_anchors_ = true
 
 [node name="MessageTimer" type="Timer" parent="." unique_id=497058165]
 wait_time = 2.0
@@ -77,5 +97,23 @@ one_shot = true
 
 [node name="HeartBar" type="CanvasGroup" parent="." unique_id=749473982]
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[node name="StartNode2D" type="Node2D" parent="." unique_id=1326393212]
+position = Vector2(107, 564)
+skew = 0.34906584
+
+[node name="StartButton" type="Button" parent="StartNode2D" unique_id=170633707]
+offset_left = 16.0
+offset_right = 284.0
+offset_bottom = 100.0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_318vg")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = ExtResource("3_318vg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_318vg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w8tcp")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_svhta")
+text = "START"
+autowrap_mode = 3
+
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="pressed" from="StartNode2D/StartButton" to="." method="_on_start_button_pressed"]

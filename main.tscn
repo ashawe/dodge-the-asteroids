@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://o82588da4bjg"]
 
 [ext_resource type="Script" uid="uid://cadv6431k6lmi" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://btq5om5iui1an" path="res://enemy/mob.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://34qe5bkf1dqs" path="res://player/player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c2sklip5qfp7o" path="res://hud/hud.tscn" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://q5fwn1nnbud1" path="res://art/Backgrounds/Starry background  - Layer 01 - Void.png" id="5_272bh"]
 [ext_resource type="Texture2D" uid="uid://d3p7h0y74rrha" path="res://art/Backgrounds/Starry background  - Layer 02 - Stars.png" id="6_5vw27"]
+[ext_resource type="Script" uid="uid://cig6vrx3cfaek" path="res://difficulty_timer.gd" id="7_5vw27"]
 [ext_resource type="Texture2D" uid="uid://b41it4nj3c51h" path="res://art/Backgrounds/Starry background  - Layer 03 - Stars.png" id="7_kek77"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
@@ -229,7 +229,6 @@ point_count = 5
 
 [node name="Main" type="Node" unique_id=67030597]
 script = ExtResource("1_0xm2m")
-asteroid_scene = ExtResource("2_1bvp3")
 
 [node name="Node" type="Node" parent="." unique_id=739555063]
 
@@ -276,7 +275,14 @@ frame_progress = 0.022832008
 [node name="Player" parent="." unique_id=1294606859 instance=ExtResource("2_h2yge")]
 visible = false
 
+[node name="DifficultyTimer" type="Timer" parent="." unique_id=1443867705]
+wait_time = 10.0
+script = ExtResource("7_5vw27")
+MIN_INCREASE_TIME = 15
+MAX_INCREASE_TIME = 20
+
 [node name="MobTimer" type="Timer" parent="." unique_id=265171650]
+wait_time = 1.5
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=423913390]
 
@@ -298,6 +304,7 @@ rotation = 0.0020833302
 
 [connection signal="player_died" from="Player" to="." method="game_over"]
 [connection signal="player_got_hit" from="Player" to="HUD" method="lose_heart"]
+[connection signal="timeout" from="DifficultyTimer" to="." method="_on_difficulty_timer_timeout"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

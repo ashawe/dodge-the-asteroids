@@ -1,3 +1,14 @@
+## [0.91] - 2026-03-09
+ 
+### Added
+- Gradual difficulty scaling
+
+### Changed
+- Start button color and background
+
+### Fixed
+- Lives set back to 3
+
 ## [0.9] - 2026-03-09
  
 ### Added

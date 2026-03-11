@@ -2,11 +2,14 @@ extends RigidBody2D
 
 class_name Asteroid
 
+@export var MOB_SCALE_VARIANCE := 0.5
+@export var MOB_SPEED_VARIANCE := 5
+
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	queue_free()
 
 
-func spawn_mob(mob_spawn_path: PathFollow2D):
+func spawn_mob(mob_spawn_path: PathFollow2D, mob_speed: float, mob_scale: float):
 	position = mob_spawn_path.position
 	
 	# Set the mob's direction perpendicular to the path direction.
@@ -15,14 +18,17 @@ func spawn_mob(mob_spawn_path: PathFollow2D):
 	direction += randf_range(-PI / 4, PI / 4)
 	rotation = direction
 	
-	# Choose the velocity for the mob.
-	var velocity := Vector2(randf_range(100.0, 150.0), 0.0)
+	mob_speed += randf_range(-MOB_SPEED_VARIANCE, MOB_SPEED_VARIANCE)
+	print("chosen mob speed: ", mob_speed)
+	var velocity := Vector2(mob_speed, 0.0)
 	linear_velocity = velocity.rotated(direction)
 	
-	# Choose random scale for the mob.
-	var random_scale := randf_range(1.5, 2.5)
-	$Sprite2D.scale = Vector2(random_scale, random_scale)
-	$CollisionShape2D.scale = Vector2(random_scale, random_scale)
+	mob_scale += randf_range(-MOB_SCALE_VARIANCE, MOB_SCALE_VARIANCE)
+	print("chosen mob scale: ", mob_scale)
+	print("------------------------------")
+	$Sprite2D.scale = Vector2(mob_scale, mob_scale)
+	$CollisionShape2D.scale = Vector2(mob_scale, mob_scale)
+
 
 func destroy() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)

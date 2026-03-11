@@ -20,7 +20,7 @@ var hearts: Array[Node] = []
 func _ready() -> void:
 	message_label = $MessageLabel
 	message_timer = $MessageTimer
-	start_button = $StartButton
+	start_button = $StartNode2D/StartButton
 	score_label = $ScoreLabel
 	high_score_label = $HighScoreLabel
 	heart_bar = $HeartBar
