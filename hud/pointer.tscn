@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dopa8cmvj77e0"]
+
+[ext_resource type="Script" uid="uid://8wq6rrvm6rns" path="res://hud/pointer.gd" id="1_v4elb"]
+[ext_resource type="Texture2D" uid="uid://chl2awmtfviy1" path="res://art/HUD/excalimation mark2.png" id="1_xkyce"]
+[ext_resource type="Texture2D" uid="uid://2mmsqxdfhh77" path="res://art/HUD/Arrow.png" id="2_ur3c8"]
+[ext_resource type="Script" uid="uid://blknulmfuybqe" path="res://hit_flash_and_flicker_component.gd" id="2_v4elb"]
+
+[node name="Pointer" type="Node2D" unique_id=659541343]
+script = ExtResource("1_v4elb")
+
+[node name="Exclamation" type="Sprite2D" parent="." unique_id=1270743392]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_xkyce")
+vframes = 4
+frame = 1
+
+[node name="HitFlashAndFlickerComponent" type="Node" parent="Exclamation" unique_id=1399509573]
+script = ExtResource("2_v4elb")
+
+[node name="Arrow" type="Sprite2D" parent="." unique_id=1397315551]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_ur3c8")
+
+[node name="HitFlashAndFlickerComponent" type="Node" parent="Arrow" unique_id=1644208667]
+script = ExtResource("2_v4elb")

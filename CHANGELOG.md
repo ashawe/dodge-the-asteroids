@@ -1,4 +1,16 @@
-## [0.91] - 2026-03-09
+## [0.92] - 2026-03-11
+ 
+### Added
+- Exclamation Art
+- Pointer Art
+- Exclamation pointer now shows up from where the asteroid is coming
+
+### Changed
+
+### Fixed
+- 0.91 changelog's date
+
+## [0.91] - 2026-03-10
  
 ### Added
 - Gradual difficulty scaling

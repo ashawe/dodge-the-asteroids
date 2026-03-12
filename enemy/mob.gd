@@ -19,13 +19,13 @@ func spawn_mob(mob_spawn_path: PathFollow2D, mob_speed: float, mob_scale: float)
 	rotation = direction
 	
 	mob_speed += randf_range(-MOB_SPEED_VARIANCE, MOB_SPEED_VARIANCE)
-	print("chosen mob speed: ", mob_speed)
+	#print("chosen mob speed: ", mob_speed)
 	var velocity := Vector2(mob_speed, 0.0)
 	linear_velocity = velocity.rotated(direction)
 	
 	mob_scale += randf_range(-MOB_SCALE_VARIANCE, MOB_SCALE_VARIANCE)
-	print("chosen mob scale: ", mob_scale)
-	print("------------------------------")
+	#print("chosen mob scale: ", mob_scale)
+	#print("------------------------------")
 	$Sprite2D.scale = Vector2(mob_scale, mob_scale)
 	$CollisionShape2D.scale = Vector2(mob_scale, mob_scale)
 

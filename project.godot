@@ -22,6 +22,8 @@ window/stretch/mode="canvas_items"
 
 [editor]
 
+movie_writer/movie_file="D:/1. Projects/GameDev/Tutuorials/dodge-the-creeps/builds/movies/movie.avi"
+movie_writer/fps=120
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 

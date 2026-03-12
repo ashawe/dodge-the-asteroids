@@ -223,7 +223,7 @@ animations = [{
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 479, 1, 0, 0, 0, 0, 479, 720, 0, 0, 0, 0, -1, 719, 0, 0, 0, 0, -1, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 1, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
 }
 point_count = 5
 
@@ -294,10 +294,11 @@ one_shot = true
 position = Vector2(240, 450)
 
 [node name="MobPath" type="Path2D" parent="." unique_id=611489619]
+position = Vector2(0.9999999, 0)
+scale = Vector2(0.99999994, 1)
 curve = SubResource("Curve2D_1bvp3")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=442882748]
-position = Vector2(-1, 0)
 rotation = 0.0020833302
 
 [node name="HUD" parent="." unique_id=1291757214 instance=ExtResource("4_1bvp3")]
