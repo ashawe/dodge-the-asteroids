@@ -14,6 +14,10 @@ config/name="Dodge The Creeps"
 run/main_scene="uid://o82588da4bjg"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[autoload]
+
+BgMusic="*uid://b4njo5mr2c380"
+
 [display]
 
 window/size/viewport_width=480

@@ -16,6 +16,8 @@ var friction := 50
 var velocity: Vector2 = Vector2.ZERO # The player's movement vector.
 var screen_size # Size of the game window.
 
+@onready var ship_base: Sprite2D = $ShipBase
+
 var is_first_press_done: bool = false
 var is_invulnerable: bool = false
 var is_dead: bool = false
@@ -34,6 +36,7 @@ func _ready() -> void:
 
 
 func start(start_position: Vector2, _lives: int) -> void:
+	ship_base.texture = load("res://art/PlayerShip/Main Ship - Base - Full health.png")
 	position = start_position
 	self.lives = _lives
 	rotation = 0
@@ -94,12 +97,23 @@ func _on_body_entered(body) -> void:
 		player_died.emit()
 		die()
 	else:
+		update_ship_damage_texture()
 		# show and wait for hit effect and then continue the game
 		effects.hit_flash(self, 1.0)
 		effects.flicker(self, 1.0)
 		await get_tree().create_timer(1).timeout
 		is_invulnerable = false
 
+func update_ship_damage_texture():
+	match lives:
+		3:
+			ship_base.texture = load("res://art/PlayerShip/Main Ship - Base - Slight damage.png")
+		2:
+			ship_base.texture = load("res://art/PlayerShip/Main Ship - Base - Damaged.png")
+		1:
+			ship_base.texture = load("res://art/PlayerShip/Main Ship - Base - Very damaged.png")
+		_:
+			ship_base.texture = load("res://art/PlayerShip/Main Ship - Base - Full health.png")
 
 func die() -> void:
 	hide() # Player disappears after being hit.

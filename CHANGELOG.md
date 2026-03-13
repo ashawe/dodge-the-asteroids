@@ -1,3 +1,16 @@
+## [0.93] - 2026-03-12
+ 
+### Added
+- Music
+	- Background Music
+	- Player Hit Music / Asteroid Break music
+	- Game Over Music
+- Ship art changes when player gets damaged
+
+### Changed
+
+### Fixed
+
 ## [0.92] - 2026-03-11
  
 ### Added

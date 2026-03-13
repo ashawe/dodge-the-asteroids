@@ -7,6 +7,9 @@ const FIRST_SPAWN_INTERVAL := 1.5
 
 var asteroid_scene: PackedScene = preload("res://enemy/mob.tscn")
 var pointer_scene: PackedScene = preload("res://hud/pointer.tscn")
+@onready var bg_music: AudioStreamPlayer = $"/root/BgMusic"
+@onready var game_over_music: AudioStreamPlayer = $GameOverMusic
+
 @export var MIN_SPAWN_INTERVAL := 0.85
 @export var MAX_SPAWN_INTERVAL := 1.0
 @export var SPAWN_INTERVAL_STEP := 0.1
@@ -40,6 +43,8 @@ func _ready() -> void:
 
 
 func game_over() -> void:
+	game_over_music.play()
+	bg_music.volume_db = -28
 	if is_high_score(score):
 		save_highscore(score)
 		hud.show_high_score(score, true)
@@ -60,6 +65,7 @@ func new_game() -> void:
 	hud.hide_high_score()
 	hud.show_message("Get Ready")
 	hud.restore_all_hearts()
+	bg_music.volume_db = -18
 
 
 func _on_mob_timer_timeout() -> void:

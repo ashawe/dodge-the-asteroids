@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bevp4qf7nwuox" path="res://art/Asteroid 01 - Explode.png" id="2_bq0h1"]
 [ext_resource type="Texture2D" uid="uid://c21ptrg18telw" path="res://art/Asteroid 01 - Explode inverted.png" id="3_3vvgw"]
 [ext_resource type="Material" uid="uid://ndqlm67idgj0" path="res://art/fieryglow.tres" id="3_fdr5x"]
+[ext_resource type="AudioStream" uid="uid://bwglgtth26air" path="res://art/explosion-in-tight-space-gamemaster-audio-no-reverb-tail-1-00-00.mp3" id="5_fdr5x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vvgw"]
 radius = 17.029387
@@ -100,5 +101,9 @@ rect = Rect2(-30, -30, 60, 60)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=910401188]
 libraries/ = SubResource("AnimationLibrary_ctp6e")
+
+[node name="DestroyStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=640899406]
+stream = ExtResource("5_fdr5x")
+volume_db = -22.0
 
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

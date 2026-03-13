@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b4njo5mr2c380"]
+
+[ext_resource type="AudioStream" uid="uid://dopvo7paimqw3" path="res://art/backgroundmusicforvideos-game-minecraft-gaming-background-music-402451.mp3" id="1_olv4h"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=1638435414]
+stream = ExtResource("1_olv4h")
+volume_db = -28.0
+autoplay = true

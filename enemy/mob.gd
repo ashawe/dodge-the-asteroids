@@ -5,6 +5,8 @@ class_name Asteroid
 @export var MOB_SCALE_VARIANCE := 0.5
 @export var MOB_SPEED_VARIANCE := 5
 
+@onready var destroy_music: AudioStreamPlayer2D = $DestroyStreamPlayer
+
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	queue_free()
 
@@ -31,6 +33,7 @@ func spawn_mob(mob_spawn_path: PathFollow2D, mob_speed: float, mob_scale: float)
 
 
 func destroy() -> void:
+	destroy_music.play()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimationPlayer.play("Blast")
 	await $AnimationPlayer.animation_finished
