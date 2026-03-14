@@ -1,6 +1,8 @@
 shader_type canvas_item; 
 render_mode blend_add;
 
+uniform float time_offset = 0.0;
+
 uniform float fireball_scale_y = 1.0;
 uniform float glow_scale_y = 1.0;
 uniform float glow_strength = 1.0;
@@ -32,7 +34,7 @@ void fragment()
 { 	
 	vec2 mUV = (UV - glow_position) / glow_size;
 	vec2 uv = (mUV - 0.5) * 2.0 * vec2(1.0, fireball_scale_y); 
-	float time = TIME;
+	float time = TIME + time_offset;
     vec2 cuv = mUV - vec2(0.5); 
 	float d2c = length(cuv);
 	vec4 color = COLOR;

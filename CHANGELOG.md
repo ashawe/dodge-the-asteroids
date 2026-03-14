@@ -1,3 +1,12 @@
+## [0.96] - 2026-03-14
+
+### Added
+
+### Changed
+
+### Fixed
+- Each asteroid now has a different time it glows
+
 ## [0.95] - 2026-03-14
 
 ### Added

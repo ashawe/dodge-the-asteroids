@@ -27,6 +27,7 @@ noise = SubResource("FastNoiseLite_gyedh")
 
 [resource]
 shader = ExtResource("1_t30i8")
+shader_parameter/time_offset = 0.0
 shader_parameter/fireball_scale_y = 1.0
 shader_parameter/glow_scale_y = -0.685
 shader_parameter/glow_strength = 10.0

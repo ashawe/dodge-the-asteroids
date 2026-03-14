@@ -34,6 +34,8 @@ func spawn_mob(mob_speed: float, mob_scale: float, direction_varience: int):
 	#print("------------------------------")
 	$Sprite2D.scale = Vector2(mob_scale, mob_scale)
 	$CollisionShape2D.scale = Vector2(mob_scale, mob_scale)
+	$Sprite2D/InvertedSprite2D.material = $Sprite2D/InvertedSprite2D.material.duplicate()
+	$Sprite2D/InvertedSprite2D.material.set_shader_parameter("time_offset", randf_range(0.0,100.0))
 
 
 func destroy() -> void:
