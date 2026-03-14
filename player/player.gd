@@ -74,7 +74,6 @@ func _physics_process(delta) -> void:
 			engine_animation.animation = "idle"
 		if is_first_press_done:
 			position += velocity * delta
-			position = position.clamp(Vector2.ZERO, screen_size)
 
 
 func _on_body_entered(body) -> void:

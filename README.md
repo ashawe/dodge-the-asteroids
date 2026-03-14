@@ -9,3 +9,7 @@ Other Artists:
 	- [AXIALE](https://axiale.itch.io/)
 	- [ILLSEN](https://github.com/iLLsen) : [Dynamic Glow](https://godotshaders.com/shader/dynamic-glow/)
 	- [SAJADDEV111](https://sajaddev111.itch.io/) : [Exclamation Mark](https://sajaddev111.itch.io/excalimation-mark)
+Music:
+	   - Game Over sound: In first 2d game assets by godotengine.org
+	   - Background Music: [BackgroundMusicForVideos | pixabay](https://pixabay.com/users/backgroundmusicforvideos-46459014/)
+	   - Explosion Sfx: [Gamemaster Audio | uppbeat.io](https://uppbeat.io/sfx/explosion-in-tight-space/53/723)

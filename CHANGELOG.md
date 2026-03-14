@@ -1,3 +1,22 @@
+## [0.94] - 2026-03-13
+
+### Added
+- Music Attribution in Readme.md
+- Parallax effect in Background
+	- Camera follows Spaceship
+	- Asteroids don't disappear unless they're too far from spaceship
+- Asteroid now aims in the *general* direction of the player **AI Contribution**
+	- MATH.md => explains how direction from asteroid to where the player is going to be was calculated
+	- Another thing that contributes to difficulty scaling as time goes on
+
+### Changed
+- Game resumes from where the player was not from a set start position (might cause issues if the player goes way way off the screen?)
+- Difficulty increases every 10-20 seconds instead of 15-20
+
+### Fixed
+- Background being 1px off
+- Asteroids not spawning properly
+
 ## [0.93] - 2026-03-12
  
 ### Added

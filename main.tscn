@@ -231,23 +231,37 @@ point_count = 5
 [node name="Main" type="Node" unique_id=67030597]
 script = ExtResource("1_0xm2m")
 
-[node name="Node" type="Node" parent="." unique_id=739555063]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1754869306]
 
-[node name="BackgroundLayerVoid" type="AnimatedSprite2D" parent="Node" unique_id=316889017]
-position = Vector2(240.09634, 359.8929)
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1440285919]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(480, 720)
+
+[node name="BackgroundLayerVoid" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=316889017]
+position = Vector2(240.00002, 360)
 rotation = 1.5707964
-scale = Vector2(1.1246654, 1.3313651)
+scale = Vector2(1.125, 1.334)
 sprite_frames = SubResource("SpriteFrames_cegan")
 autoplay = "default"
 
-[node name="BackgroundLayer" type="AnimatedSprite2D" parent="Node" unique_id=374390112]
-position = Vector2(240, 359.8929)
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1413306510]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(720, 1280)
+
+[node name="BackgroundLayer" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer2" unique_id=374390112]
+position = Vector2(360, 640)
 rotation = 1.5707964
-scale = Vector2(1.1246654, 1.1246654)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qsp4k")
 autoplay = "default"
 
-[node name="BackgroundLayerStar1" type="AnimatedSprite2D" parent="Node" unique_id=610278229]
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" unique_id=183883504]
+z_index = 2
+z_as_relative = false
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(960, 1440)
+
+[node name="BackgroundLayerStar1" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer3" unique_id=610278229]
 position = Vector2(90.00001, 58.000015)
 scale = Vector2(0.4388889, 0.4388889)
 sprite_frames = SubResource("SpriteFrames_come4")
@@ -255,7 +269,7 @@ autoplay = "default"
 frame = 7
 frame_progress = 0.022832008
 
-[node name="BackgroundLayerStar2" type="AnimatedSprite2D" parent="Node" unique_id=1573741818]
+[node name="BackgroundLayerStar2" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer3" unique_id=1573741818]
 position = Vector2(496, 344)
 rotation = 1.8221238
 scale = Vector2(0.4388889, 0.4388889)
@@ -264,7 +278,7 @@ autoplay = "default"
 frame = 7
 frame_progress = 0.022832008
 
-[node name="BackgroundLayerStar3" type="AnimatedSprite2D" parent="Node" unique_id=2002241276]
+[node name="BackgroundLayerStar3" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer3" unique_id=2002241276]
 position = Vector2(85.999985, 680)
 rotation = 0.93375117
 scale = Vector2(0.4388889, 0.4388889)
@@ -276,10 +290,12 @@ frame_progress = 0.022832008
 [node name="Player" parent="." unique_id=1294606859 instance=ExtResource("2_h2yge")]
 visible = false
 
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=247981783]
+
 [node name="DifficultyTimer" type="Timer" parent="." unique_id=1443867705]
 wait_time = 10.0
 script = ExtResource("7_5vw27")
-MIN_INCREASE_TIME = 15
+MIN_INCREASE_TIME = 10
 MAX_INCREASE_TIME = 20
 
 [node name="MobTimer" type="Timer" parent="." unique_id=265171650]
@@ -294,15 +310,14 @@ one_shot = true
 [node name="StartPosition" type="Marker2D" parent="." unique_id=1839413600]
 position = Vector2(240, 450)
 
-[node name="MobPath" type="Path2D" parent="." unique_id=611489619]
-position = Vector2(0.9999999, 0)
+[node name="HUD" parent="." unique_id=1291757214 instance=ExtResource("4_1bvp3")]
+
+[node name="MobPath" type="Path2D" parent="HUD" unique_id=611489619]
 scale = Vector2(0.99999994, 1)
 curve = SubResource("Curve2D_1bvp3")
 
-[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=442882748]
+[node name="MobSpawnLocation" type="PathFollow2D" parent="HUD/MobPath" unique_id=442882748]
 rotation = 0.0020833302
-
-[node name="HUD" parent="." unique_id=1291757214 instance=ExtResource("4_1bvp3")]
 
 [node name="GameOverMusic" type="AudioStreamPlayer" parent="." unique_id=2039552121]
 stream = ExtResource("8_5vw27")

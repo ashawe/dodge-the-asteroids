@@ -10,27 +10,34 @@ var pointer_scene: PackedScene = preload("res://hud/pointer.tscn")
 @onready var bg_music: AudioStreamPlayer = $"/root/BgMusic"
 @onready var game_over_music: AudioStreamPlayer = $GameOverMusic
 
-@export var MIN_SPAWN_INTERVAL := 0.85
+@export var MIN_SPAWN_INTERVAL := 0.8
 @export var MAX_SPAWN_INTERVAL := 1.0
 @export var SPAWN_INTERVAL_STEP := 0.1
-@export var SPAWN_INTERVAL_VARIANCE := 0.1
+@export var SPAWN_INTERVAL_VARIANCE := 0.05
 
 @export var MIN_MOB_SPEED := 100.0
 @export var MAX_MOB_SPEED := 150.0
-@export var MOB_SPEED_STEP := 7.5
+@export var MOB_SPEED_STEP := 5
 
 @export var MIN_MOB_SCALE := 1.0
 @export var MAX_MOB_SCALE := 2.0
 @export var MOB_SCALE_STEP := 0.3
+
+@export var MIN_DIRECTION_VARIENCE := 4
+@export var MAX_DIRECTION_VARIENCE := 36
+@export var DIRECTION_VARIENCE_STEP := 4
+
 
 var score: int
 var player: PlayerSpaceship
 var hud: HeadsUpDisplay
 var difficulty_timer: EnemyDifficultyTimer
 var mob_timer: Timer
+var mob_path: Path2D
 var current_spawn_interval := FIRST_SPAWN_INTERVAL
 var current_speed:= MIN_MOB_SPEED
 var current_scale:= MIN_MOB_SCALE
+var current_direction_varience := MIN_DIRECTION_VARIENCE
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,6 +45,7 @@ func _ready() -> void:
 	difficulty_timer = $DifficultyTimer
 	mob_timer = $MobTimer
 	hud = $HUD
+	mob_path = $HUD/MobPath
 	hud.show_high_score(load_highscore())
 	hud.setup_hearts(INIT_LIVES)
 
@@ -59,13 +67,17 @@ func new_game() -> void:
 	difficulty_timer.resetTimer(true)
 	difficulty_timer.start()
 	score = 0
-	player.start($StartPosition.position, INIT_LIVES)
+	player.start(player.position, INIT_LIVES)
 	$StartTimer.start()
 	hud.update_score(score)
 	hud.hide_high_score()
 	hud.show_message("Get Ready")
 	hud.restore_all_hearts()
 	bg_music.volume_db = -18
+	current_spawn_interval = FIRST_SPAWN_INTERVAL
+	current_speed = MIN_MOB_SPEED
+	current_scale = MIN_MOB_SCALE
+	current_direction_varience = MIN_DIRECTION_VARIENCE
 
 
 func _on_mob_timer_timeout() -> void:
@@ -76,19 +88,25 @@ func _on_mob_timer_timeout() -> void:
 	var mob: Asteroid = asteroid_scene.instantiate();
 	
 	# Choose a random location to spawn on Path2D.
-	var mob_spawn_location: PathFollow2D = $MobPath/MobSpawnLocation
+	var mob_spawn_location: PathFollow2D = $HUD/MobPath/MobSpawnLocation
 	mob_spawn_location.progress_ratio = randf()
-	spawn_pointer(mob_spawn_location.position)
+	# Save position before the await — another timer callback could
+	# change mob_spawn_location.progress_ratio during the wait.
+	var spawn_pos := mob_spawn_location.position
+	spawn_pointer(spawn_pos)
 	# wait for spawn_pointer to flicker
-	mob.spawn_mob(mob_spawn_location, current_speed, current_scale)
 	await get_tree().create_timer(1).timeout
+	mob.player_ref = player
+	# Convert screen-space position to world-space using the CURRENT canvas
+	# transform so the mob appears at the screen edge after camera movement.
+	mob.position = get_viewport().get_canvas_transform().affine_inverse() * spawn_pos
+	mob.spawn_mob(current_speed, current_scale, current_direction_varience)
 	add_child(mob)
-	# Spawn the mob by adding it to the Main scene.
 	
 
 func spawn_pointer(mob_spawn_position: Vector2):
 	var pointer = pointer_scene.instantiate();
-	add_child(pointer)
+	hud.add_child(pointer)
 	pointer.position = mob_spawn_position
 	# left edge
 	if floor(mob_spawn_position.x) == 0:
@@ -118,27 +136,14 @@ func _on_difficulty_timer_timeout() -> void:
 	if not is_interval_capped():
 		difficulty_options.append("interval")
 		difficulty_options.append("interval")
-		difficulty_options.append("interval")
-	#else:
-		# print("==============================")
-		# print("INTERVAL CAPPED ")
-		# print("==============================")
 	if not is_scale_capped():
 		difficulty_options.append("scale")
-		difficulty_options.append("scale")
-	#else:
-		# print("==============================")
-		# print("SCALE CAPPED ")
-		# print("==============================")
 	if not is_speed_capped():
 		difficulty_options.append("speed")
 		difficulty_options.append("speed")
-		difficulty_options.append("speed")
-	#else:
-		# print("==============================")
-		# print("SPEED CAPPED ")
-		# print("==============================")
-	
+	if not is_direction_capped():
+		difficulty_options.append("aim")
+		difficulty_options.append("aim")
 	# if everything is already capped,
 	# we don't need to reset & start the timer and
 	# we can directly return.
@@ -163,6 +168,9 @@ func _on_difficulty_timer_timeout() -> void:
 			current_scale = clamp(current_scale, MIN_MOB_SCALE, MAX_MOB_SCALE)
 			# print("MOB SCALE INCREASED. Now: ", current_scale)
 			# print("==============================")
+		"aim":
+			current_direction_varience += DIRECTION_VARIENCE_STEP
+			current_direction_varience = clamp(current_direction_varience, MIN_DIRECTION_VARIENCE, MAX_DIRECTION_VARIENCE)
 		"_":
 			pass
 	difficulty_timer.resetTimer()
@@ -198,4 +206,7 @@ func is_scale_capped() -> bool:
 
 func is_interval_capped() -> bool:
 	return current_spawn_interval <= MIN_SPAWN_INTERVAL
-	
+
+
+func is_direction_capped() -> bool:
+	return current_direction_varience >= MAX_DIRECTION_VARIENCE

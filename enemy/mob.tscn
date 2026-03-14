@@ -96,8 +96,7 @@ position = Vector2(-1, 0)
 rotation = 1.5707964
 shape = SubResource("CircleShape2D_3vvgw")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1694095606]
-rect = Rect2(-30, -30, 60, 60)
+
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=910401188]
 libraries/ = SubResource("AnimationLibrary_ctp6e")
