@@ -166,7 +166,7 @@ func _on_difficulty_timer_timeout() -> void:
 		"speed":
 			current_speed += MOB_SPEED_STEP
 			current_speed = clamp(current_speed, MIN_MOB_SPEED, MAX_MOB_SPEED)
-			hud.add_difficulty_message("Asteroids are now even faster !")
+			hud.add_difficulty_message("Asteroids are now even faster!")
 		"scale":
 			current_scale += MOB_SCALE_STEP
 			current_scale = clamp(current_scale, MIN_MOB_SCALE, MAX_MOB_SCALE)

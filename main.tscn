@@ -238,6 +238,7 @@ motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(480, 720)
 
 [node name="BackgroundLayerVoid" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=316889017]
+texture_filter = 1
 position = Vector2(240.00002, 360)
 rotation = 1.5707964
 scale = Vector2(1.125, 1.334)

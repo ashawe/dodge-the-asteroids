@@ -80,11 +80,13 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=898193181]
 clip_children = 2
+texture_filter = 2
 texture = ExtResource("2_bq0h1")
 hframes = 8
 metadata/_edit_group_ = true
 
 [node name="InvertedSprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1415765284]
+texture_filter = 2
 material = ExtResource("3_fdr5x")
 texture = ExtResource("3_3vvgw")
 hframes = 8

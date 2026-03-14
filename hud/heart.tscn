@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://blknulmfuybqe" path="res://hit_flash_and_flicker_component.gd" id="3_heart"]
 
 [node name="Heart" type="Sprite2D" unique_id=456511409]
+texture_filter = 1
 texture = ExtResource("2_heart")
 hframes = 5
 vframes = 2

@@ -71,6 +71,7 @@ animations = [{
 }]
 
 [node name="Player" type="Area2D" unique_id=1578739235]
+texture_filter = 1
 script = ExtResource("1_qjkh3")
 
 [node name="EngineAnimation" type="AnimatedSprite2D" parent="." unique_id=1206876697]
@@ -85,6 +86,7 @@ position = Vector2(0, 8)
 texture = ExtResource("3_qjkh3")
 
 [node name="ShipBase" type="Sprite2D" parent="." unique_id=995344713]
+texture_filter = 1
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_rkbax")
 

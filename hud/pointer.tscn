@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://blknulmfuybqe" path="res://hit_flash_and_flicker_component.gd" id="2_v4elb"]
 
 [node name="Pointer" type="Node2D" unique_id=659541343]
+texture_filter = 1
 script = ExtResource("1_v4elb")
 
 [node name="Exclamation" type="Sprite2D" parent="." unique_id=1270743392]

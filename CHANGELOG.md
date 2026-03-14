@@ -1,3 +1,13 @@
+## [0.96.1] - 2026-03-14
+
+### Added
+
+### Changed
+- Made texture_filter to be "nearest" for most sprites (made the game look more high rez)
+
+### Fixed
+- One log message having an extra space
+
 ## [0.96] - 2026-03-14
 
 ### Added
