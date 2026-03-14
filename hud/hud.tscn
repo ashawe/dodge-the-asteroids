@@ -115,5 +115,20 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_svhta")
 text = "START"
 autowrap_mode = 3
 
+[node name="DifficultyLog" type="VBoxContainer" parent="." unique_id=150232082]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -354.0
+offset_top = -104.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 1
+alignment = 2
+
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="pressed" from="StartNode2D/StartButton" to="." method="_on_start_button_pressed"]

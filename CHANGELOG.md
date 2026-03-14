@@ -1,3 +1,19 @@
+## [0.95] - 2026-03-14
+
+### Added
+- Log Messages **AI CONTRIBUTION**
+	- Uses tween for animating fade-in and fade-out
+	- Max 4 messages at a time
+	- Messages fade out after a while
+	- Each difficulty increase posts a message
+
+### Changed
+- Difficulty Timer Back to 15-20
+- Spawn Interval Step increased (made it easier)
+- Minimum mob speed decreased (made it easier) but increased the rate at which they gain speed
+
+### Fixed
+
 ## [0.94] - 2026-03-13
 
 ### Added
