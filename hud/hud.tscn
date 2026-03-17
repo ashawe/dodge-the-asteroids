@@ -37,6 +37,57 @@ border_blend = true
 corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ivg5"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjv1a"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kkc0"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="HUD" type="CanvasLayer" unique_id=1291757214]
 script = ExtResource("1_2gk58")
 
@@ -102,9 +153,10 @@ position = Vector2(107, 564)
 skew = 0.34906584
 
 [node name="StartButton" type="Button" parent="StartNode2D" unique_id=170633707]
-offset_left = 16.0
-offset_right = 284.0
-offset_bottom = 100.0
+offset_left = 4.3529663
+offset_top = -34.05365
+offset_right = 272.35297
+offset_bottom = 65.94635
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_318vg")
 theme_override_font_sizes/font_size = 64
@@ -121,7 +173,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -354.0
+offset_left = -309.0
 offset_top = -104.0
 offset_right = -4.0
 offset_bottom = -4.0
@@ -129,6 +181,94 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 1
 alignment = 2
+
+[node name="Controls" type="HFlowContainer" parent="." unique_id=589958995]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -52.0
+offset_right = 155.0
+offset_bottom = -8.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/h_separation = 8
+
+[node name="HFlowContainer3" type="HFlowContainer" parent="Controls" unique_id=417352606]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="A" type="Button" parent="Controls/HFlowContainer3" unique_id=776756275]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_318vg")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_0ivg5")
+button_mask = 0
+text = "A"
+autowrap_trim_flags = 0
+
+[node name="TurnLeft" type="Label" parent="Controls/HFlowContainer3" unique_id=1515170923]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_318vg")
+theme_override_font_sizes/font_size = 12
+text = "LEFT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HFlowContainer2" type="HFlowContainer" parent="Controls" unique_id=111790301]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="W" type="Button" parent="Controls/HFlowContainer2" unique_id=1265299523]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_318vg")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_fjv1a")
+button_mask = 0
+text = "W"
+autowrap_trim_flags = 0
+
+[node name="Boost" type="Label" parent="Controls/HFlowContainer2" unique_id=752274967]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_318vg")
+theme_override_font_sizes/font_size = 12
+text = "BOOST"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Controls" unique_id=1591982745]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="D" type="Button" parent="Controls/HFlowContainer" unique_id=927550393]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_318vg")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_1kkc0")
+button_mask = 0
+text = "D"
+autowrap_trim_flags = 0
+
+[node name="TurnRight" type="Label" parent="Controls/HFlowContainer" unique_id=1009616520]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_318vg")
+theme_override_font_sizes/font_size = 12
+text = "RIGHT"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="pressed" from="StartNode2D/StartButton" to="." method="_on_start_button_pressed"]

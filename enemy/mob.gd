@@ -10,6 +10,8 @@ var player_ref: PlayerSpaceship
 
 @onready var destroy_music: AudioStreamPlayer2D = $DestroyStreamPlayer
 
+func _ready() -> void:
+	add_to_group("asteroids")
 
 func _physics_process(_delta: float) -> void:
 	if player_ref and player_ref.is_inside_tree():
@@ -38,12 +40,15 @@ func spawn_mob(mob_speed: float, mob_scale: float, direction_varience: int):
 	$Sprite2D/InvertedSprite2D.material.set_shader_parameter("time_offset", randf_range(0.0,100.0))
 
 
-func destroy() -> void:
-	destroy_music.play()
+func destroy_without_music() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimationPlayer.play("Blast")
 	await $AnimationPlayer.animation_finished
 	queue_free()
+	
+func destroy() -> void:
+	destroy_music.play()
+	destroy_without_music()
 
 
 ## Solve for the point where the asteroid intercepts the moving player.

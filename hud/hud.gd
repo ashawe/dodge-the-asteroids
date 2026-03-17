@@ -23,6 +23,7 @@ var message_timer: Timer
 var start_button: Button
 var heart_bar: CanvasGroup
 var hearts: Array[Node] = []
+var controls_container: HFlowContainer
 
 func _ready() -> void:
 	message_label = $MessageLabel
@@ -32,6 +33,7 @@ func _ready() -> void:
 	start_button = $StartNode2D/StartButton
 	high_score_label = $HighScoreLabel
 	heart_bar = $HeartBar
+	controls_container = $Controls
 
 
 func show_message(text) -> void:
@@ -50,6 +52,12 @@ func show_high_score(score:int, is_new_high_score := false) -> void:
 func hide_high_score() -> void:
 	score_label.visible = true
 	high_score_label.visible = false
+	
+func hide_controls() -> void:
+	controls_container.visible = false
+
+func show_controls() -> void:
+	controls_container.visible = true
 
 func show_game_over() -> void:
 	show_message("Game Over")

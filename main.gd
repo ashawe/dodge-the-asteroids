@@ -54,6 +54,8 @@ func game_over() -> void:
 	hud.add_difficulty_message("Better luck next time...")
 	game_over_music.play()
 	bg_music.volume_db = -28
+	hud.show_controls()
+	clear_all_asteroids()
 	if is_high_score(score):
 		save_highscore(score)
 		hud.show_high_score(score, true)
@@ -69,17 +71,18 @@ func new_game() -> void:
 	difficulty_timer.resetTimer(true)
 	difficulty_timer.start()
 	score = 0
-	player.start(player.position, INIT_LIVES)
+	player.start($StartPosition.position, INIT_LIVES)
 	$StartTimer.start()
 	hud.update_score(score)
 	hud.hide_high_score()
+	hud.hide_controls()
 	hud.clear_difficulty_messages()
 	hud.restore_all_hearts()
 	hud.show_message("")
 	hud.add_difficulty_message("Get Ready...")
+	bg_music.volume_db = -18
 	await hud.message_timer.timeout
 	hud.add_difficulty_message("ASTEROIDS INCOMING!!!")
-	bg_music.volume_db = -18
 	current_spawn_interval = FIRST_SPAWN_INTERVAL
 	current_speed = MIN_MOB_SPEED
 	current_scale = MIN_MOB_SCALE
@@ -214,3 +217,9 @@ func is_interval_capped() -> bool:
 
 func is_direction_capped() -> bool:
 	return current_direction_varience >= MAX_DIRECTION_VARIENCE
+
+
+func clear_all_asteroids() -> void:
+	var instances = get_tree().get_nodes_in_group("asteroids")
+	for instance in instances:
+		instance.queue_free()

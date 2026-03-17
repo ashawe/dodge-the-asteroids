@@ -292,6 +292,7 @@ frame_progress = 0.022832008
 visible = false
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=247981783]
+position_smoothing_enabled = true
 
 [node name="DifficultyTimer" type="Timer" parent="." unique_id=1443867705]
 wait_time = 10.0

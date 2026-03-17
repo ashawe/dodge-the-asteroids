@@ -1,3 +1,26 @@
+## [1.0] - 2026-03-16
+
+### Added
+- Camera Smoothing
+- Clear all asteroids on death
+
+### Changed
+- Set player position back to StartPosition after starting a new game
+
+### Fixed
+- Music starting a second after starting new game (When asteroids start to come instead of when you click the button)
+- Commit changes from last changelog
+
+## [0.97] - 2026-03-16
+
+### Added
+- HUD now shows controls when the player is not "in-game"
+
+### Changed
+
+### Fixed
+- Changed the project name to "Dodge the Asteroids" instead of "Dodge the Creeps"
+
 ## [0.96.1] - 2026-03-14
 
 ### Added
