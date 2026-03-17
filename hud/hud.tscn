@@ -37,6 +37,14 @@ border_blend = true
 corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
+[sub_resource type="InputEventKey" id="InputEventKey_318vg"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_w8tcp"]
+events = [SubResource("InputEventKey_318vg")]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ivg5"]
 content_margin_left = 6.0
 content_margin_top = 2.0
@@ -164,6 +172,7 @@ theme_override_styles/normal = ExtResource("3_318vg")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_318vg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_w8tcp")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_svhta")
+shortcut = SubResource("Shortcut_w8tcp")
 text = "START"
 autowrap_mode = 3
 

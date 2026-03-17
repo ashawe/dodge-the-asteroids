@@ -1,6 +1,16 @@
 ## [1.0] - 2026-03-16
 
 ### Added
+- Space shortcut to start game
+
+### Changed
+- Clear asteroids on game start instead of game end
+
+### Fixed
+
+## [1.0] - 2026-03-16
+
+### Added
 - Camera Smoothing
 - Clear all asteroids on death
 

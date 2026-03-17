@@ -54,8 +54,7 @@ func game_over() -> void:
 	hud.add_difficulty_message("Better luck next time...")
 	game_over_music.play()
 	bg_music.volume_db = -28
-	hud.show_controls()
-	clear_all_asteroids()
+	hud.show_controls()	
 	if is_high_score(score):
 		save_highscore(score)
 		hud.show_high_score(score, true)
@@ -72,6 +71,7 @@ func new_game() -> void:
 	difficulty_timer.start()
 	score = 0
 	player.start($StartPosition.position, INIT_LIVES)
+	clear_all_asteroids()
 	$StartTimer.start()
 	hud.update_score(score)
 	hud.hide_high_score()
